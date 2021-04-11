@@ -44,10 +44,10 @@ jobs:
     - uses: papeloto/action-zip@v1
       with:
         files: Database/
-        dest: dist.zip
+        dest: ./Dist/dist.zip
 
     - name: Deploy static site to S3 bucket
       run: |
         aws s3 rm s3://githubactionstestrd --recursive
-        aws s3 sync ./dist.zip s3://githubactionstestrd --delete
+        aws s3 sync ./Dist s3://githubactionstestrd --delete
 
