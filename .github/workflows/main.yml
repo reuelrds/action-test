@@ -17,4 +17,4 @@ jobs:
     steps:
     - run: |
         echo "Hello ${{ github.events.inputs.name }}"
-        echo "- in ${{ github.events.inputs.name.home }}"
+        echo "- in ${{ github.events.inputs.home }}"
