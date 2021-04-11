@@ -29,10 +29,10 @@ jobs:
     - run: |
         mkdir Database
         mv test.sql Database
-    - uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: Database
+#     - uses: actions/upload-artifact@v2
+#       with:
+#         name: dist
+#         path: Database
         
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -40,10 +40,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
+        
+    - uses: papeloto/action-zip@v1
+      with:
+        files: Database/
+        dest: dist.zip
 
     - name: Deploy static site to S3 bucket
-      run: 
-        zip -r deploy.zip ./Downloads
+      run:
         aws s3 rm s3://githubactionstestrd --recursive
-        aws s3 sync deploy.zip s3://githubactionstestrd --delete
+        aws s3 sync dist.zip s3://githubactionstestrd --delete
 
