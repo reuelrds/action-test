@@ -26,5 +26,8 @@ jobs:
     - run: |
         echo "Hello ${{ env.FRONTEND_URL }}"
         cat test.sql
-    
+    - uses: actions/upload-artifact@v2
+      with:
+        name: test.sql
+        path: Database
 
