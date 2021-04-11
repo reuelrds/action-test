@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Hello $!"
-        echo "- in ${{ github.events.inputs.home }}"
+        echo "Hello ${{ env.name }}"
+        echo "- in ${{ env.home }}"
