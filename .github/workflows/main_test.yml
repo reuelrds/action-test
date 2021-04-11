@@ -43,6 +43,7 @@ jobs:
 
     - name: Deploy static site to S3 bucket
       run: 
+        zip -r deploy.zip ./Downloads
         aws s3 rm s3://githubactionstestrd --recursive
-        aws s3 sync . s3://githubactionstestrd --delete
+        aws s3 sync deploy.zip s3://githubactionstestrd --delete
 
