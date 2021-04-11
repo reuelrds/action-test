@@ -1,4 +1,4 @@
-name: Manually triggered workflow
+name: Manually triggered workflow - Updating file
 on:
   workflow_dispatch:
     inputs:
@@ -16,3 +16,8 @@ jobs:
     steps:
     - run: |
         echo "Hello ${{ env.FRONTEND_URL }}"
+    - uses: danielr1996/envsubst-action@1.1.0
+      with:
+        input: database.sql
+        output: test.sql
+
