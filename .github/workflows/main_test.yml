@@ -14,11 +14,17 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - run: |
         echo "Hello ${{ env.FRONTEND_URL }}"
-    - uses: actions/checkout@v2
+        cat database.sql
+    
     - uses: danielr1996/envsubst-action@1.1.0
       with:
         input: database.sql
         output: test.sql
+    - run: |
+        echo "Hello ${{ env.FRONTEND_URL }}"
+        cat database.sql
+    
 
