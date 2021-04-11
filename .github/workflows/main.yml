@@ -16,5 +16,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        echo "Hello ${{ env.INPUT_NAME }}"
-        echo "- in ${{ env.INPUT_HOME }}"
+        echo $env.INPUT_NAME
+        echo $env.INPUT_HOME
