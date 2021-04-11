@@ -25,6 +25,6 @@ jobs:
         output: test.sql
     - run: |
         echo "Hello ${{ env.FRONTEND_URL }}"
-        cat database.sql
+        cat test.sql
     
 
