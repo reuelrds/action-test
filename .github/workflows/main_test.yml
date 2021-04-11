@@ -26,8 +26,11 @@ jobs:
     - run: |
         echo "Hello ${{ env.FRONTEND_URL }}"
         cat test.sql
+    - run: |
+        mkdir Database
+        mv test.sql Database
     - uses: actions/upload-artifact@v2
       with:
-        name: test.sql
+        name: dist
         path: Database
 
