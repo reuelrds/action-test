@@ -19,18 +19,5 @@ jobs:
         echo "Hello ${{ github.event.inputs.name }}"
         echo " -  at ${{ github.event.inputs.home }}"
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: "us-east-1"
     
-    - name: Send SQS message
-      env:
-        BODY: "Testing SQS from Github Actions Hello ${{ github.event.inputs.name }}"
-        QUEUE_URL: "https://sqs.us-east-1.amazonaws.com/123192255719/BuildCompleteQueue"
-      run: |
-        echo "Sending SQS MEssage ${{ env.BODY }} at ${{ env.QUEUE_URL }}"
-        aws sqs send-message --queue-url "${{ env.QUEUE_URL }}" --message-body "${{ env.BODY }}"
-
+    
