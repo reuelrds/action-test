@@ -32,5 +32,5 @@ jobs:
         QUEUE_URL: "https://sqs.us-east-1.amazonaws.com/123192255719/BuildCompleteQueue"
       run: |
         echo "Sending SQS MEssage ${{ env.BODY }} at ${{ env.QUEUE_URL }}"
-        aws sqs send-message --queue-url ${{ env.QUEUE_URL }} --message-body ${{ env.BODY }}
+        aws sqs send-message --queue-url "${{ env.QUEUE_URL }}" --message-body "${{ env.BODY }}"
 
