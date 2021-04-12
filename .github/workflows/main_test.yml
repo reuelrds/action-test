@@ -29,11 +29,7 @@ jobs:
     - run: |
         mkdir Database
         mv test.sql Database
-#     - uses: actions/upload-artifact@v2
-#       with:
-#         name: dist
-#         path: Database
-        
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -48,4 +44,11 @@ jobs:
 
     - name: Deploy static site to S3 bucket
       run: aws s3 sync ./Dist s3://githubactionstestrd --delete
+      
+    - name: Send SQS message
+      run: |
+        echo "Sending SQS MEssage ${{ env.BODY }} at ${{ env.QUEUE_URL }}"
+        aws sqs send-message --queue-url "${{ secrets.AWS_SQS_QUEUE_URL }}" --message-body "Build Complete"
+
+
 
